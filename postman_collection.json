@@ -1,0 +1,329 @@
+{
+  "info": {
+    "name": "Email Onebox API",
+    "description": "Complete API collection for Email Onebox - Feature-Rich Email Aggregator",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Get Health Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            },
+            "description": "Check the health status of Elasticsearch and IMAP connections"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Emails",
+      "item": [
+        {
+          "name": "Get All Emails",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emails?from=0&size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["emails"],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "0",
+                  "description": "Pagination offset"
+                },
+                {
+                  "key": "size",
+                  "value": "20",
+                  "description": "Number of results"
+                },
+                {
+                  "key": "account",
+                  "value": "",
+                  "description": "Filter by email account",
+                  "disabled": true
+                },
+                {
+                  "key": "folder",
+                  "value": "INBOX",
+                  "description": "Filter by folder",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "Interested",
+                  "description": "Filter by category",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Retrieve all emails with optional filters"
+          }
+        },
+        {
+          "name": "Search Emails",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emails/search?query=interview&from=0&size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["emails", "search"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "interview",
+                  "description": "Search query"
+                },
+                {
+                  "key": "from",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "20"
+                },
+                {
+                  "key": "account",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "folder",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Search emails using Elasticsearch full-text search"
+          }
+        },
+        {
+          "name": "Get Email by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emails/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["emails", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Email ID"
+                }
+              ]
+            },
+            "description": "Get detailed information about a specific email"
+          }
+        },
+        {
+          "name": "Categorize Email",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emails/:id/categorize",
+              "host": ["{{baseUrl}}"],
+              "path": ["emails", ":id", "categorize"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Email ID"
+                }
+              ]
+            },
+            "description": "Categorize or recategorize an email using AI"
+          }
+        },
+        {
+          "name": "Get Suggested Reply",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emails/:id/suggest-reply",
+              "host": ["{{baseUrl}}"],
+              "path": ["emails", ":id", "suggest-reply"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "",
+                  "description": "Email ID"
+                }
+              ]
+            },
+            "description": "Get AI-powered suggested reply using RAG"
+          }
+        },
+        {
+          "name": "Filter by Interested Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emails?category=Interested&from=0&size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["emails"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "Interested"
+                },
+                {
+                  "key": "from",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Get all emails categorized as 'Interested'"
+          }
+        },
+        {
+          "name": "Filter by Account",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emails?account=your-email@gmail.com&from=0&size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["emails"],
+              "query": [
+                {
+                  "key": "account",
+                  "value": "your-email@gmail.com",
+                  "description": "Replace with your email"
+                },
+                {
+                  "key": "from",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Filter emails by specific account"
+          }
+        },
+        {
+          "name": "Filter by Folder",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emails?folder=INBOX&from=0&size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["emails"],
+              "query": [
+                {
+                  "key": "folder",
+                  "value": "INBOX"
+                },
+                {
+                  "key": "from",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Filter emails by folder"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Knowledge Base",
+      "item": [
+        {
+          "name": "Get Knowledge Base",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/knowledge",
+              "host": ["{{baseUrl}}"],
+              "path": ["knowledge"]
+            },
+            "description": "Retrieve all entries in the RAG knowledge base"
+          }
+        },
+        {
+          "name": "Add Knowledge Entry",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Our product helps teams collaborate better with real-time updates and AI-powered insights.\",\n  \"metadata\": {\n    \"type\": \"product\",\n    \"category\": \"features\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/knowledge",
+              "host": ["{{baseUrl}}"],
+              "path": ["knowledge"]
+            },
+            "description": "Add a new entry to the knowledge base for RAG"
+          }
+        },
+        {
+          "name": "Add Meeting Template",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"When scheduling meetings, always include: Thank you for your interest! You can book a time slot here: https://cal.com/example\",\n  \"metadata\": {\n    \"type\": \"template\",\n    \"category\": \"meeting\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/knowledge",
+              "host": ["{{baseUrl}}"],
+              "path": ["knowledge"]
+            },
+            "description": "Add a meeting template to the knowledge base"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api",
+      "type": "string"
+    }
+  ]
+}
