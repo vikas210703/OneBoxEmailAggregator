@@ -1,0 +1,29 @@
+name: Netlify Import Env
+
+on:
+  workflow_dispatch:
+    inputs:
+      env_file_b64:
+        description: 'Base64 encoded .env contents' 
+        required: true
+      site_id:
+        description: 'Netlify Site ID' 
+        required: true
+
+jobs:
+  import-envs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Decode env and import
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          echo "$GITHUB_EVENT_INPUTS_ENV_FILE_B64" | base64 -d > /tmp/.env
+          netlify env:import /tmp/.env --site ${{ github.event.inputs.site_id }}
+        shell: bash
