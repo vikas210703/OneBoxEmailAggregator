@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Email, EmailCategory } from './types';
 import { emailApi } from './api';
 import EmailList from './components/EmailList';

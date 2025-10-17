@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Email, EmailCategory, SuggestedReply } from './types';
+import { EmailCategory, SuggestedReply } from './types';
 
 const api = axios.create({
   baseURL: '/api',
